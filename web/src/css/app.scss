@@ -1,0 +1,25 @@
+// app global css in SCSS form
+$brand-green : #acef81;
+$brand-blue : $blue-10;
+$brand-white   : #fff;
+$brand-black: #000;
+
+.brand-colors-primary {
+    color: $brand-blue !important; 
+    background-color: $brand-green !important;
+}
+
+.brand-colors-secondary {
+    color: $brand-black !important;
+    background-color:$brand-white  !important;
+}
+
+.brand-elem-accent {
+    color: $brand-white  !important; 
+    background-color: $brand-blue  !important;
+}
+
+.brand-elem-not-accent {
+    color: $brand-blue !important; 
+    background-color: $brand-white  !important;
+}

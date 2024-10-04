@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:rw
+  redis:
+    image: redis:7
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+  back:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    ports:
+      - 8081:8080
+      - 8088:8088
+    depends_on:
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/postgres
+  ml:
+    build:
+      dockerfile: Dockerfile
+      context: ml
+    ports:
+      - 5005:5005
+  web:
+    build: 
+      dockerfile: Dockerfile
+      context: web
+    ports:
+      - 8080:8080
+
+volumes:
+  postgres_data:
+  redis_data:
